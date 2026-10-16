@@ -1,6 +1,6 @@
 MO_PATH=../locale/
 
-LOCALIZABLE=../bin/*.pl ../modules/*.pm ../modules/GTFS/*.pm
+LOCALIZABLE=../bin/*.pl ../modules/*.pm ../modules/GTFS/*.pm ../modules/PtnaOutput/*.pm
 
 TEMPLATE=ptna.pot
 
@@ -23,6 +23,10 @@ check:
 	@ptna-check-strings.pl --file=../modules/RoutesList.pm
 	@echo "From PtnaSQLite.pm"
 	@ptna-check-strings.pl --file=../modules/GTFS/PtnaSQLite.pm
+	@echo "From Html.pm"
+	@ptna-check-strings.pl --file=../modules/PtnaOutput/Html.pm
+	@echo "From Issues.pm"
+	@ptna-check-strings.pl --file=../modules/PtnaOutput/Issues.pm
 
 
 up update: $(TEMPLATE)

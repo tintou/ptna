@@ -461,10 +461,7 @@ msgstr ""
 "Ознака ’line’ (=’%s’) је резервисана за означавање везано за ’power’ = "
 "’line’. За јавне превозе, користе се ’route_master’ и ’route’."
 
-#, perl-format
-msgid ""
-"The tag 'public_transport' (='%s') is not defined for 'route_master' and "
-"'route' relations. Do you mean 'public_transport:version'='2'"
+msgid "The tag 'public_transport' (='%s') is not defined for 'route_master' and 'route' relations. Do you mean 'public_transport:version'='2'%s?"
 msgstr ""
 
 #, perl-format
@@ -801,14 +798,7 @@ msgstr ""
 msgid "PTv2 route: wrong 'role' = '%s' for last platform"
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: the beginning of the route on the first way (%s) is not near the"
-" first platform stop (%s)."
-msgstr ""
-
-#, perl-format
-msgid "Distance = %d metres / %d feet."
+msgid "PTv2 route: the beginning of the route on the first way (%s) is not near the first platform stop (%s). Distance = %d metres / %d feet."
 msgstr ""
 
 msgid "Error in input data: insufficient data for nodes"
@@ -820,61 +810,35 @@ msgstr "Грешка у улазним подацима: недовољно по
 msgid "Error in input data: insufficient data for relations"
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: the end of the route on the last way (%s) is not near the last "
-"platform stop (%s)."
+msgid "PTv2 route: the end of the route on the last way (%s) is not near the last platform stop (%s). Distance = %d metres / %d feet."
 msgstr ""
 
-msgid ""
-"PTv2 route: 'roundtrip' is not set and the first and the last platform stops"
-" are the same."
+msgid "PTv2 route: 'roundtrip' is not set and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s."
 msgstr ""
 
-#, perl-format
-msgid "Consider setting 'roundtrip' = '%s'"
+msgid "PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s."
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are"
-" the same."
+msgid "PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are not the same. Consider setting 'roundtrip' = '%s'%s."
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are"
-" not the same."
+msgid "PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops are more than %d metres / %d feet apart (actual distance = %d metres / %d feet). Consider setting 'roundtrip' = '%s'%s."
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops "
-"are more than %d metres / %d feet apart (actual distance = %d metres / %d "
-"feet)."
+msgid "PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops are less than %d metres / %d feet apart (actual distance = %d metres / %d feet). This is considered acceptable."
 msgstr ""
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops "
-"are less than %d metres / %d feet apart (actual distance = %d metres / %d "
-"feet)."
-msgstr ""
-
-msgid "This is considered acceptable."
-msgstr ""
-
-msgid "wrong value"
-msgstr "погрешна вредност"
+msgid "wrong value: '%s' = '%s'"
+msgstr "погрешна вредност: '%s' = '%s'"
 
 msgid "or"
 msgstr "или"
 
-msgid "missing key"
-msgstr "недостаје кључ"
+msgid "missing key: '%s'"
+msgstr "недостаје кључ: '%s'"
 
-msgid "suspicious sub-type"
-msgstr "сумњив подтип"
+msgid "suspicious sub-type: '%s'='%s'"
+msgstr "сумњив подтип: '%s'='%s'"
 
 #, perl-format
 msgid "'barrier'='%s' with implied 'access'='no'"
@@ -2289,3 +2253,28 @@ msgstr "не пружа никакве 'shape' податке"
 
 msgid "internal error"
 msgstr ""
+
+msgid "Error in input data: insufficient data for nodes: %s, %s"
+msgstr "Грешка у улазним подацима: недовољно података за чворове: %s, %s"
+
+msgid "Error in input data: insufficient data for ways: %s, %s"
+msgstr "Грешка у улазним подацима: недовољно података за путеве: %s, %s"
+
+msgid "Error in input data: insufficient data for relations: %s, %s"
+msgstr ""
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider adding '%s' to the 'route_ref' tag of the stop)"
+msgstr "Рута: 'ref' = '%s' станице треба да представља референцу станице, али укључује 'ref' = '%s' ове руте (размислите да додате '%s' на 'route_ref' ознаку станице)"
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider creating a 'route_ref' = '%s' tag for the stop)"
+msgstr "Рута: 'ref' = '%s' станице треба да представља референцу станице, али укључује 'ref' = '%s' ове руте (размислите да додате 'route_ref' = '%s' ознаку на станицу)"
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route"
+msgstr "Рута: 'route_ref' = '%s' станице не укључује 'ref' = '%s' вредност ове руте "
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route (separate multiple values by ';' (semi-colon) without blank)"
+msgstr "Рута: 'route_ref' = '%s' станице не укључује 'ref' = '%s' вредност ове руте  (раздвојте више вредности са  ';' (тачка-зарез) без размака)"

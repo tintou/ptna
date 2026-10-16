@@ -139,7 +139,8 @@ Two of them have identical &#039;operator&#039; but different &#039;from&#039; a
         <h1 id="unassigned">3 Not clearly assigned routes</h1>
 <p>
 This section lists the lines that could not be clearly assigned. The line numbers 'ref' have been specified several times in the CSV file. This means that the same line number exists in the transport network several times in different municipalities / cities. In order to be able to clearly assign the lines, the following should be indicated:
-</p><ul>
+</p>
+<ul>
     <li>Relation:
         <ul>
             <li>'network', 'operator', as well as 'from' and 'to' should be tagged with the relation.
@@ -173,8 +174,8 @@ Examples for an entry in the CSV file of the form: 'ref;type;Comment;From;To;Ope
     </tbody>
 </table>
 <p>
-   1.) and 2.) are only distinguishable by means of 'From'/'from' and 'To'/'to', since 'Operator'/'operator' are identical (='Operator-X').<br>
-   1.) and 3.) as well as 2.) and 3.) can be distinguished by 'Operator'/'operator', as these are different (='Operator-X' or ='Operator-Z').
+1.) and 2.) are only distinguishable by means of 'From'/'from' and 'To'/'to', since 'Operator'/'operator' are identical (='Operator-X').<br>
+1.) and 3.) as well as 2.) and 3.) can be distinguished by 'Operator'/'operator', as these are different (='Operator-X' or ='Operator-Z').
 </p>
         <table class="oepnvtable js-sort-table">
             <thead>

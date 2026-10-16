@@ -3,7 +3,6 @@ package GTFS::GTFSvsOSM;
 use strict;
 
 use POSIX;
-use Locale::gettext qw();       # 'gettext()' will be overwritten in this file (at the end), so don't import from module into our name space
 
 use DateTime;
 
@@ -53,7 +52,7 @@ sub Init {
 
 #############################################################################################
 
-sub getCSVbasedScoreListHTML {
+sub getCSVbasedScores {
     my $feed             = shift || '';
     my $release_date     = shift || '';
     my $route_id         = shift || '';
@@ -62,10 +61,10 @@ sub getCSVbasedScoreListHTML {
     my $start_time    = Time::HiRes::time();
     my $duration      = 0;
 
-    my $html_retval          = '';
+    my $scores               = undef;
     my $working_release_date = undef;
 
-    printf STDERR "%s getCSVbasedScoreListHTML('%s','%s','%s','%s')\n", get_time(), $feed, $release_date, $route_id, $ref_relation_ids ? join( "', '",@{$ref_relation_ids}) : '';
+    printf STDERR "%s getCSVbasedScores('%s','%s','%s','%s')\n", get_time(), $feed, $release_date, $route_id, $ref_relation_ids ? join( "', '",@{$ref_relation_ids}) : '';
 
     if ( $feed && $route_id && $ref_relation_ids ) {
 
@@ -89,18 +88,7 @@ sub getCSVbasedScoreListHTML {
 
             # we found a matching GTFS feed and the GTFS route is valid
             if ( defined($working_release_date) ) {
-                $html_retval = '<span style="background-color: #6aef00;" title="GTFS trips versus OSM route relations">4 vs 4</span> ' .
-                               '=&gt; ' .
-                               '<span style="background-color: #6aef00;" title="Best score for OSM route xxx">0.76%</span> ' .
-                               '<span style="background-color: #aecd00;" title="Best score for OSM route xxx">8.13%</span> ' .
-                               '<span style="background-color: #6aef00;" title="Best score for OSM route xxx">0.22%</span> ' .
-                               '<span style="background-color: #aecd00;" title="Best score for OSM route xxx">7.70%</span>';
-            }
-
-            if ( $html_retval ) {
-                my $help_title  = gettext( "HELP!" );
-                my $help_string = gettext( "Help" );
-                $html_retval .= ' &nbsp;<a target="_blank" href="https://community.openstreetmap.org/t/ptna-news-for-public-transport-network-analysis/8383/685" title="' . $help_title . '">' . $help_string . '</a>';
+                $scores = { 'feed' => $feed, 'release_date' => $working_release_date, 'route_id' => $route_id };
             }
         }
     }
@@ -108,9 +96,9 @@ sub getCSVbasedScoreListHTML {
     $duration                           = Time::HiRes::time() - $start_time;
     $duration_check_against_gtfs_tasks += $duration;
 
-    printf STDERR "%s getCSVbasedScoreListHTML() returns '%s', took %0.9f seconds\n", get_time(), $html_retval, $duration;
+    printf STDERR "%s getCSVbasedScores() returns %s, took %0.9f seconds\n", get_time(), $scores ? 'scores' : 'nothing', $duration;
 
-    return $html_retval;
+    return $scores;
 }
 
 
@@ -131,28 +119,6 @@ sub Summary {
                                                                                                                           $item->{'returns'} || '';
         }
     }
-}
-
-
-#############################################################################################
-#
-# overwrite Locale::gettext::gettext() by our own function which simply decodes the getrieved data
-#
-#############################################################################################
-
-sub gettext {
-    return decode( 'utf8', Locale::gettext::gettext( @_ ) );
-}
-
-
-#############################################################################################
-#
-# overwrite Locale::gettext::ngettext() by our own function which simply decodes the getrieved data
-#
-#############################################################################################
-
-sub ngettext {
-    return decode( 'utf8', Locale::gettext::ngettext( @_ ) );
 }
 
 

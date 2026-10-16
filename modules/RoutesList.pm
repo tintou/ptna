@@ -11,6 +11,8 @@ binmode STDOUT, ":utf8";
 binmode STDERR, ":utf8";
 
 use Encode;
+use PtnaOutput::Issues qw( issue note );
+use PtnaOutput::Msg    qw( msg );
 
 
 ####################################################################################################################
@@ -33,7 +35,6 @@ my $Debug                           = undef;
 my $Verbose                         = undef;
 my $csv_module                      = undef;
 
-my $issues_string                   = '';   # to be used with ALL 'issues' and gettext/ngettext - a separate tool parses this code, extracts those statements and creates a list of all issues
 
 
 #############################################################################################
@@ -146,9 +147,8 @@ sub ReadRoutes {
                                 $hashref->{'type'}      = 'ignore';         # store type
                                 $hashref->{'ignore'}    = $_;
                             } else {
-                                $issues_string          = gettext( "First character of line ('%s') is reserved. Please put the first CSV field into double quotes (\"...\"). Line %s of Routes-Data. Contents: '%s'" );
                                 $hashref->{'type'}      = 'reserved';         # store type
-                                $hashref->{'reserved'}  = sprintf( decode( 'utf8', $issues_string ), $1, $NR, $hashref->{'contents'} );   # this is an error
+                                $hashref->{'reserved'}  = issue('csv.first_char_reserved', $1, $NR, $hashref->{'contents'});   # this is an error
                             }
                         }
                     } else {
@@ -206,24 +206,21 @@ sub ReadRoutes {
                         $hashref->{'colour'}            = $ExpColour           || '';              # 'colour' coded as @(colour=...) in ExpComment field
                         if ( $ExpGtfsFeed                       &&
                              $ExpGtfsFeed !~ m/^[0-9A-Za-z_.-]+$/    ) {
-                            $issues_string      = gettext( "CSV data: field 'gtfs_feed' (= '%s') is wrong. Line %s of Routes-Data. Contents: '%s'" );
                             $hashref->{'type'}  = 'error';                                              # this is an error
                             $hashref->{'ref'}   = $ExpRef;                                              # this is an error
-                            $hashref->{'error'} = sprintf( decode( 'utf8', $issues_string ), $ExpGtfsFeed, $NR, $hashref->{'contents'} );   # this is an error
+                            $hashref->{'error'} = issue('csv.gtfs_feed_wrong', $ExpGtfsFeed, $NR, $hashref->{'contents'});   # this is an error
                         } elsif ( $ExpGtfsReleaseDate                                        &&
                              $ExpGtfsReleaseDate !~ m/^[\d][\d][\d][\d]-[01][\d]-[0-3][\d]$/ &&
                              $ExpGtfsReleaseDate ne 'previous'                               &&
                              $ExpGtfsReleaseDate ne 'latest'                                 &&
                              $ExpGtfsReleaseDate ne 'long-term'                                 ) {
-                            $issues_string      = gettext( "CSV data: field 'release_date' (= '%s') is wrong. Should be a date (YYYY-MM-DD), 'latest', 'previous' or 'long-term'. Line %s of Routes-Data. Contents: '%s'" );
                             $hashref->{'type'}  = 'error';                                              # this is an error
                             $hashref->{'ref'}   = $ExpRef;                                              # this is an error
-                            $hashref->{'error'} = sprintf( decode( 'utf8', $issues_string ), $ExpGtfsReleaseDate, $NR, $hashref->{'contents'} );   # this is an error
+                            $hashref->{'error'} = issue('csv.release_date_wrong', $ExpGtfsReleaseDate, $NR, $hashref->{'contents'});   # this is an error
                         } elsif ( @rest ) {
-                            $issues_string      = gettext( "CSV data includes errors. Line %s of Routes-Data. Contents: '%s'" );
                             $hashref->{'type'}  = 'error';                                              # this is an error
                             $hashref->{'ref'}   = $ExpRef || "Error";                                   # this is an error
-                            $hashref->{'error'} = sprintf( decode( 'utf8', "Error: '%s'. ".$issues_string ), join(', ',@rest), $NR, $hashref->{'contents'} );   # this is an error
+                            $hashref->{'error'} = msg( "Error: '%s'. " . issue('csv.errors'), join(', ',@rest), $NR, $hashref->{'contents'} );   # this is an error
                         } else {
                             if ( defined($ExpRef) && $ExpRef ne '' ) {
                                 my @ref_or_list  = split( $or_separator,  $ExpRef );
@@ -259,25 +256,22 @@ sub ReadRoutes {
                                             }
                                         } else {
                                             # this $ExpRouteType is not a valid one
-                                            $issues_string      = gettext( "Route-Type is not supported: '%s'. Line %s of Routes-Data. Contents: '%s'" );
                                             $hashref->{'type'}  = 'error';                                              # this is an error
                                             $hashref->{'ref'}   = $ExpRef;                                              # this is an error
-                                            $hashref->{'error'} = sprintf( decode( 'utf8', $issues_string ), $ExpRouteType, $NR, $hashref->{'contents'} );    # this is an error
+                                            $hashref->{'error'} = issue('csv.route_type_unsupported', $ExpRouteType, $NR, $hashref->{'contents'});    # this is an error
                                         }
                                     } else {
                                         # if there is at least one separator, then $ExpRouteType as the second value must not be empty
-                                        $issues_string      = gettext( "Route-Type is not set. Line %s of Routes-Data. Contents: '%s'" );
                                         $hashref->{'type'}  = 'error';                                              # this is an error
                                         $hashref->{'ref'}   = $ExpRef;                                              # this is an error
-                                        $hashref->{'error'} = sprintf( decode( 'utf8', $issues_string ), $NR, $hashref->{'contents'} );   # this is an error
+                                        $hashref->{'error'} = issue('csv.route_type_not_set', $NR, $hashref->{'contents'});   # this is an error
                                     }
                                 }
                             } elsif ( defined($ExpRef) ) {
                                 # is empty string
-                                $issues_string      = gettext( "Route-Ref is not set. Line %s of Routes-Data. Contents: '%s'" );
                                 $hashref->{'type'}  = 'error';                                              # this is an error
                                 $hashref->{'ref'}   = 'Error';                                              # this is an error
-                                $hashref->{'error'} = sprintf( decode( 'utf8', $issues_string ), $NR, $hashref->{'contents'} );   # this is an error
+                                $hashref->{'error'} = issue('csv.route_ref_not_set', $NR, $hashref->{'contents'});   # this is an error
                             }
                         }
                     }

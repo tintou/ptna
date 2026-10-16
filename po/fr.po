@@ -498,14 +498,8 @@ msgstr ""
 "'power' = 'line'. Pour les transports en commun 'route_master' et 'route' "
 "sont utilisés."
 
-#, perl-format
-msgid ""
-"The tag 'public_transport' (='%s') is not defined for 'route_master' and "
-"'route' relations. Do you mean 'public_transport:version'='2'"
-msgstr ""
-"L'attribut 'public_transport' (='%s') n'est pas défini pour les relations "
-"maitre 'route_master' et 'route'. Est-ce que vous voulez dire "
-"'public_transport:version'='2'"
+msgid "The tag 'public_transport' (='%s') is not defined for 'route_master' and 'route' relations. Do you mean 'public_transport:version'='2'%s?"
+msgstr "L'attribut 'public_transport' (='%s') n'est pas défini pour les relations maitre 'route_master' et 'route'. Est-ce que vous voulez dire 'public_transport:version'='2'%s?"
 
 #, perl-format
 msgid "The tag '%s' has an empty value."
@@ -894,17 +888,8 @@ msgstr "Ligne PTv2 : mauvais 'role' = '%s' pour la première plateforme"
 msgid "PTv2 route: wrong 'role' = '%s' for last platform"
 msgstr "Ligne PTv2 : mauvais 'role' = '%s' pour la dernière plateforme"
 
-#, perl-format
-msgid ""
-"PTv2 route: the beginning of the route on the first way (%s) is not near the"
-" first platform stop (%s)."
-msgstr ""
-"Ligne PTv2 : le début de la ligne / la première voie (%s) n'est pas à coté "
-"de la première plateforme (%s)."
-
-#, perl-format
-msgid "Distance = %d metres / %d feet."
-msgstr "Distance = %d mètres / %d pieds."
+msgid "PTv2 route: the beginning of the route on the first way (%s) is not near the first platform stop (%s). Distance = %d metres / %d feet."
+msgstr "Ligne PTv2 : le début de la ligne / la première voie (%s) n'est pas à coté de la première plateforme (%s). Distance = %d mètres / %d pieds."
 
 msgid "Error in input data: insufficient data for nodes"
 msgstr "Erreur dans les données d'entrée : pas assez de nœuds 'nodes'"
@@ -916,75 +901,35 @@ msgid "Error in input data: insufficient data for relations"
 msgstr ""
 "Erreur dans les données d'entrée : pas assez de données pour les relations"
 
-#, perl-format
-msgid ""
-"PTv2 route: the end of the route on the last way (%s) is not near the last "
-"platform stop (%s)."
-msgstr ""
-"Ligne PTv2  : la fin de la ligne / la dernière voie (%s) n'est pas à coté de"
-" la dernière plateforme (%s)."
+msgid "PTv2 route: the end of the route on the last way (%s) is not near the last platform stop (%s). Distance = %d metres / %d feet."
+msgstr "Ligne PTv2  : la fin de la ligne / la dernière voie (%s) n'est pas à coté de la dernière plateforme (%s). Distance = %d mètres / %d pieds."
 
-msgid ""
-"PTv2 route: 'roundtrip' is not set and the first and the last platform stops"
-" are the same."
-msgstr ""
-"Ligne PTv2 : l'attribut 'roundtrip' n'est pas indiqué alors que la première "
-"et la dernière plateforme sont identiques."
+msgid "PTv2 route: 'roundtrip' is not set and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s."
+msgstr "Ligne PTv2 : l'attribut 'roundtrip' n'est pas indiqué alors que la première et la dernière plateforme sont identiques. Il est recommandé de mettre l'attribut 'roundtrip' = '%s'%s."
 
-#, perl-format
-msgid "Consider setting 'roundtrip' = '%s'"
-msgstr "Il est recommandé de mettre l'attribut 'roundtrip' = '%s'"
+msgid "PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s."
+msgstr "Ligne PTv2 : l'attribut 'roundtrip' = '%s' alors que la première et dernière plateforme sont identiques. Il est recommandé de mettre l'attribut 'roundtrip' = '%s'%s."
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are"
-" the same."
-msgstr ""
-"Ligne PTv2 : l'attribut 'roundtrip' = '%s' alors que la première et dernière"
-" plateforme sont identiques."
+msgid "PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are not the same. Consider setting 'roundtrip' = '%s'%s."
+msgstr "Ligne PTv2 : l'attribut 'roundtrip' = '%s' alors que la première et dernière plateforme ne sont pas identiques. Il est recommandé de mettre l'attribut 'roundtrip' = '%s'%s."
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are"
-" not the same."
-msgstr ""
-"Ligne PTv2 : l'attribut 'roundtrip' = '%s' alors que la première et dernière"
-" plateforme ne sont pas identiques."
+msgid "PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops are more than %d metres / %d feet apart (actual distance = %d metres / %d feet). Consider setting 'roundtrip' = '%s'%s."
+msgstr "Ligne PTv2 : 'roundtrip' = 'yes'  mais la première et dernière plateforme  sont distantes de plus de  %d mètres / %d pieds (distance actuelle = %d mètres / %d pieds). Il est recommandé de mettre l'attribut 'roundtrip' = '%s'%s."
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops "
-"are more than %d metres / %d feet apart (actual distance = %d metres / %d "
-"feet)."
-msgstr ""
-"Ligne PTv2 : 'roundtrip' = 'yes'  mais la première et dernière plateforme  "
-"sont distantes de plus de  %d mètres / %d pieds (distance actuelle = %d "
-"mètres / %d pieds)."
+msgid "PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops are less than %d metres / %d feet apart (actual distance = %d metres / %d feet). This is considered acceptable."
+msgstr "Ligne PTv2 : 'roundtrip' = 'yes' et la première et dernière plateforme sont distantes de moins de %d mètres / %d pieds (distance actuelle = %d mètres / %d pieds). Ceci est considéré comme acceptable."
 
-#, perl-format
-msgid ""
-"PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops "
-"are less than %d metres / %d feet apart (actual distance = %d metres / %d "
-"feet)."
-msgstr ""
-"Ligne PTv2 : 'roundtrip' = 'yes' et la première et dernière plateforme sont "
-"distantes de moins de %d mètres / %d pieds (distance actuelle = %d mètres / "
-"%d pieds)."
-
-msgid "This is considered acceptable."
-msgstr "Ceci est considéré comme acceptable."
-
-msgid "wrong value"
-msgstr "Valeur erronée"
+msgid "wrong value: '%s' = '%s'"
+msgstr "Valeur erronée: '%s' = '%s'"
 
 msgid "or"
 msgstr "ou"
 
-msgid "missing key"
-msgstr "clé manquante"
+msgid "missing key: '%s'"
+msgstr "clé manquante: '%s'"
 
-msgid "suspicious sub-type"
-msgstr "sous-type douteux"
+msgid "suspicious sub-type: '%s'='%s'"
+msgstr "sous-type douteux: '%s'='%s'"
 
 #, perl-format
 msgid "'barrier'='%s' with implied 'access'='no'"
@@ -2550,3 +2495,28 @@ msgstr "ne contient pas de donnée 'shape'"
 
 msgid "internal error"
 msgstr "erreur interne"
+
+msgid "Error in input data: insufficient data for nodes: %s, %s"
+msgstr "Erreur dans les données d'entrée : pas assez de nœuds 'nodes': %s, %s"
+
+msgid "Error in input data: insufficient data for ways: %s, %s"
+msgstr "Erreur dans les données d'entrée : pas assez de voies 'ways': %s, %s"
+
+msgid "Error in input data: insufficient data for relations: %s, %s"
+msgstr "Erreur dans les données d'entrée : pas assez de données pour les relations: %s, %s"
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider adding '%s' to the 'route_ref' tag of the stop)"
+msgstr "Ligne : l'attribut 'ref' = '%s' sur un arrêt doit correspondre au numéro de l'arrêt, mais semble être le numéro 'ref' = '%s' de cet itinéraire (ajouter '%s' à l'attribut 'route_ref' de cet arrêt serait peut-être plus adapté)"
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider creating a 'route_ref' = '%s' tag for the stop)"
+msgstr "Ligne : l'attribut 'ref' = '%s' sur un arrêt doit correspondre au numéro de l'arrêt, mais semble être le numéro 'ref' = '%s' de cet itinéraire (l'attribut 'route_ref' = '%s' serait peut-être plus adapté pour cet arrêt)"
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route"
+msgstr "Ligne : l'attribut 'route_ref' = '%s' de cet arrêt ne comprend pas l'attribut 'ref' = '%s' de cette ligne "
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route (separate multiple values by ';' (semi-colon) without blank)"
+msgstr "Ligne : l'attribut 'route_ref' = '%s' de cet arrêt ne comprend pas l'attribut 'ref' = '%s' de cette ligne  (séparer les différentes valeurs par des ';' (point-virgule) sans espaces)"

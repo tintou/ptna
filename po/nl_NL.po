@@ -626,16 +626,16 @@ msgstr ""
 msgid "PTv2 route: last node of way is not a stop position of this route: %s"
 msgstr ""
 
-msgid "wrong value"
+msgid "wrong value: '%s' = '%s'"
 msgstr ""
 
 msgid "or"
 msgstr ""
 
-msgid "missing key"
+msgid "missing key: '%s'"
 msgstr ""
 
-msgid "suspicious sub-type"
+msgid "suspicious sub-type: '%s'='%s'"
 msgstr ""
 
 #, perl-format
@@ -1636,4 +1636,29 @@ msgid "does not exist"
 msgstr ""
 
 msgid "does not provide any 'shape' data"
+msgstr ""
+
+msgid "Error in input data: insufficient data for nodes: %s, %s"
+msgstr ""
+
+msgid "Error in input data: insufficient data for ways: %s, %s"
+msgstr ""
+
+msgid "Error in input data: insufficient data for relations: %s, %s"
+msgstr ""
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider adding '%s' to the 'route_ref' tag of the stop)"
+msgstr ""
+
+#, perl-format
+msgid "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider creating a 'route_ref' = '%s' tag for the stop)"
+msgstr ""
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route"
+msgstr ""
+
+#, perl-format
+msgid "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route (separate multiple values by ';' (semi-colon) without blank)"
 msgstr ""

@@ -126,7 +126,7 @@ This section lists further relations of the environment of the routes:
 <ul>
     <li>potentially wrong 'route' or 'route_master' values?
         <ul>
-        <li>e.g. 'route' = 'suspended_bus' instead of 'route' = 'bus'</li>
+            <li>e.g. 'route' = 'suspended_bus' instead of 'route' = 'bus'</li>
         </ul>
     </li>
     <li>but also 'type' = 'network', 'type' = 'set' or 'route' = 'network', i.e. a collection of all routes and route-masters belonging to the 'network'.
@@ -142,11 +142,10 @@ They represent so called 'well defined' values and are not considered as errors.
 <ul>
     <li>'type' = 'route_master', 'type' = 'route'
         <ul>
-    <li>'route_master' = 'road', 'route' = 'road'</li>
+            <li>'route_master' = 'road', 'route' = 'road'</li>
         </ul>
     </li>
 </ul>
-
         <table class="oepnvtable js-sort-table">
             <thead>
                 <tr class="tableheaderrow"><th class="relation js-sort-number" dir="auto">&#x21C5;Relation (id=)</th><th class="type" dir="auto">&#x21C5;Type (type=)</th><th class="route_type" dir="auto">&#x21C5;Vehicle (route(_master)=)</th><th class="ref js-sort-number" dir="auto">&#x21C5;Line (ref=)</th><th class="name" dir="auto">&#x21C5;Name (name=)</th><th class="network" dir="auto">&#x21C5;Network (network=)</th><th class="operator" dir="auto">&#x21C5;Operator (operator=)</th><th class="from" dir="auto">&#x21C5;From (from=)</th><th class="via" dir="auto">&#x21C5;Via (via=)</th><th class="to" dir="auto">&#x21C5;To (to=)</th><th class="PTv" dir="auto">&#x21C5;PTv</th><th class="public_transport" dir="auto">&#x21C5;public_transport</th></tr>

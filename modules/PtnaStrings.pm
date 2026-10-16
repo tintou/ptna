@@ -288,7 +288,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "Deprecated GTFS key '%s'. For valid key names, see the" );
+    $MessageList[$i]->{'message'}                = gettext( "Deprecated GTFS key '%s'. For valid key names, see the %s" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -324,6 +324,34 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
+    $i++;
+    $MessageList[$i]->{'message'}                = gettext( "Error in input data: insufficient data for nodes: %s, %s" );
+    $MessageList[$i]->{'type'}                   = gettext( "Errors" );
+    $MessageList[$i]->{'option'}                 = "";
+    $MessageList[$i]->{'description'}            = gettext( "This Route relation has been included into the input data as a side-effect, the members (relations, ways, nodes) of this Route have not been included." );
+    $MessageList[$i]->{'fix'}                    = "";
+    $MessageList[$i]->{'image'}                  = "";
+    $MessageHash{$MessageList[$i]->{'message'}}  = $i;
+
+    $i++;
+    $MessageList[$i]->{'message'}                = gettext( "Error in input data: insufficient data for ways: %s, %s" );
+    $MessageList[$i]->{'type'}                   = gettext( "Errors" );
+    $MessageList[$i]->{'option'}                 = "";
+    $MessageList[$i]->{'description'}            = gettext( "This Route relation has been included into the input data as a side-effect, the members (relations, ways, nodes) of this Route have not been included." );
+    $MessageList[$i]->{'fix'}                    = "";
+    $MessageList[$i]->{'image'}                  = "";
+    $MessageHash{$MessageList[$i]->{'message'}}  = $i;
+
+    $i++;
+    $MessageList[$i]->{'message'}                = gettext( "Error in input data: insufficient data for relations: %s, %s" );
+    $MessageList[$i]->{'type'}                   = gettext( "Errors" );
+    $MessageList[$i]->{'option'}                 = "";
+    $MessageList[$i]->{'description'}            = gettext( "This Route relation has been included into the input data as a side-effect, the members (relations, ways, nodes) of this Route have not been included." );
+    $MessageList[$i]->{'fix'}                    = "";
+    $MessageList[$i]->{'image'}                  = "";
+    $MessageHash{$MessageList[$i]->{'message'}}  = $i;
+
+    $i++;
     $MessageList[$i]->{'message'}                = gettext( "First character of line ('%s') is reserved. Please put the first CSV field into double quotes (\"...\"). Line %s of Routes-Data. Contents: '%s'" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
@@ -333,7 +361,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "Invalid GTFS feed code ('%s') in GTFS key '%s'. For valid feed codes, see the" );
+    $MessageList[$i]->{'message'}                = gettext( "Invalid GTFS feed code ('%s') in GTFS key '%s'. For valid feed codes, see the %s" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -342,7 +370,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "Invalid GTFS key '%s'. For valid key names, see the" );
+    $MessageList[$i]->{'message'}                = gettext( "Invalid GTFS key '%s'. For valid key names, see the %s" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -576,7 +604,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops are less than %d metres / %d feet apart (actual distance = %d metres / %d feet)."  );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = 'yes' and the first and the last platform stops are less than %d metres / %d feet apart (actual distance = %d metres / %d feet). This is considered acceptable."  );
     $MessageList[$i]->{'type'}                   = gettext( "Notes" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -585,7 +613,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops are more than %d metres / %d feet apart (actual distance = %d metres / %d feet)."  );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = 'yes' but the first and the last platform stops are more than %d metres / %d feet apart (actual distance = %d metres / %d feet). Consider setting 'roundtrip' = '%s'%s."  );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -594,7 +622,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are not the same."  );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = '%s' but the first and the last platform stops are not the same. Consider setting 'roundtrip' = '%s'%s."  );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -603,7 +631,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are the same." );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' = '%s' and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s." );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -612,7 +640,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' is not set and the first and the last platform stops are the same." );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: 'roundtrip' is not set and the first and the last platform stops are the same. Consider setting 'roundtrip' = '%s'%s." );
     $MessageList[$i]->{'type'}                   = gettext( "Notes" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";
@@ -936,7 +964,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: the beginning of the route on the first way (%s) is not near the first platform stop (%s)." );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: the beginning of the route on the first way (%s) is not near the first platform stop (%s). Distance = %d metres / %d feet." );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "check-sequence";
     $MessageList[$i]->{'description'}            = gettext("The starting point on the first way ('role' = '') of the relation is far from the first 'role' = 'platform', more than %d meters.") . " " .
@@ -948,7 +976,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: the end of the route on the last way (%s) is not near the last platform stop (%s)." );
+    $MessageList[$i]->{'message'}                = gettext( "PTv2 route: the end of the route on the last way (%s) is not near the last platform stop (%s). Distance = %d metres / %d feet." );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "check-sequence";
     $MessageList[$i]->{'description'}            = gettext("The final point of the last way ('role' = '') of the relation is far from the last 'role' = 'platform', more than %d meters.") . " " .
@@ -1443,7 +1471,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route %s" );
+    $MessageList[$i]->{'message'}                = gettext( "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider adding '%s' to the 'route_ref' tag of the stop)" );
     $MessageList[$i]->{'type'}                   = gettext( "Notes" );
     $MessageList[$i]->{'option'}                 = "check-route-ref";
     $MessageList[$i]->{'description'}            = "";
@@ -1452,7 +1480,25 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route%s" );
+    $MessageList[$i]->{'message'}                = gettext( "Route: 'ref' = '%s' of stop should represent the reference of the stop, but includes the 'ref' = '%s' of this route (consider creating a 'route_ref' = '%s' tag for the stop)" );
+    $MessageList[$i]->{'type'}                   = gettext( "Notes" );
+    $MessageList[$i]->{'option'}                 = "check-route-ref";
+    $MessageList[$i]->{'description'}            = "";
+    $MessageList[$i]->{'fix'}                    = "";
+    $MessageList[$i]->{'image'}                  = "";
+    $MessageHash{$MessageList[$i]->{'message'}}  = $i;
+
+    $i++;
+    $MessageList[$i]->{'message'}                = gettext( "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route" );
+    $MessageList[$i]->{'type'}                   = gettext( "Errors" );
+    $MessageList[$i]->{'option'}                 = "check-route-ref";
+    $MessageList[$i]->{'description'}            = "";
+    $MessageList[$i]->{'fix'}                    = "";
+    $MessageList[$i]->{'image'}                  = "";
+    $MessageHash{$MessageList[$i]->{'message'}}  = $i;
+
+    $i++;
+    $MessageList[$i]->{'message'}                = gettext( "Route: 'route_ref' = '%s' of stop does not include 'ref' = '%s' value of this route (separate multiple values by ';' (semi-colon) without blank)" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "check-route-ref";
     $MessageList[$i]->{'description'}            = "";
@@ -1656,7 +1702,7 @@ sub InitMessageStrings {
     $MessageHash{$MessageList[$i]->{'message'}}  = $i;
 
     $i++;
-    $MessageList[$i]->{'message'}                = gettext( "The tag 'public_transport' (='%s') is not defined for 'route_master' and 'route' relations. Do you mean 'public_transport:version'='2'?" );
+    $MessageList[$i]->{'message'}                = gettext( "The tag 'public_transport' (='%s') is not defined for 'route_master' and 'route' relations. Do you mean 'public_transport:version'='2'%s?" );
     $MessageList[$i]->{'type'}                   = gettext( "Errors" );
     $MessageList[$i]->{'option'}                 = "";
     $MessageList[$i]->{'description'}            = "";

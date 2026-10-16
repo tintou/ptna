@@ -54,6 +54,7 @@ if ( scalar keys %{$found_strings_ref} ) {
 # search for:
 #   $issues_string = gettext( "PTv2 route: empty 'role'" );
 #   $issues_string = ngettext( "Route: unclear access (%s) to way", "Route: unclear access (%s) to ways", $num_of_errors );
+#   'codename' => [ 'issues', gettext( "PTv2 route: empty 'role'" ) ],       (in PtnaOutput/Issues.pm)
 #
 #############################################################################################
 
@@ -68,7 +69,11 @@ sub ReadStringsFromFile {
         while ( <F> ) {
             s/^\s+//;
             s/\s+$//;
-            if ( m/^\$(issues|notes)_string\s*=\s*(gettext\(\s*\")(.*)(\"\s*\)\s*;)/ ) {
+            if ( m/^'[^']+'\s*=>\s*\[\s*'(issues|notes)'\s*,\s*(gettext\(\s*\")(.*)(\"\s*\)\s*)\]\s*,/ ) {
+                $strings_to_statement{$3}->{$1} = '$' . $1 . '_string = ' . $2 . $3 . $4 . ';';
+            } elsif ( m/^'[^']+'\s*=>\s*\[\s*'(issues|notes)'\s*,\s*(ngettext\(\s*\")(.*?)(\",\s*\".*\",\s*)(.*?)(\s*\)\s*)\]\s*,/ ) {
+                $strings_to_statement{$3}->{$1} = '$' . $1 . '_string = ' . $2 . $3 . $4 . '1 ' . $6 . ';';
+            } elsif ( m/^\$(issues|notes)_string\s*=\s*(gettext\(\s*\")(.*)(\"\s*\)\s*;)/ ) {
                 $strings_to_statement{$3}->{$1} = $2 . $3 . $4;
                 printf STDERR "--> \$strings_to_statement{%s}->{%s} = %s\n", $2, $1, $strings_to_statement{$3}->{$1}    if ( $debug );
             } elsif ( m/^\$(issues|notes)_string\s*=\s*(ngettext\(\s*\")(.*?)(\",\s*\".*\",\s*)(.*)(\s*\)\s*;)/ ) {
