@@ -1,0 +1,575 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ptna.openstreetmap.de/schema/ptna-analysis.schema.json",
+  "title": "PTNA analysis",
+  "description": "The raw result of an analysis (bin/ptna-routes.pl --json-file=FILE). Nothing is translated or formatted: texts are messages (see #/$defs/message) which the consumer translates and presents. The data is grouped by topic; titles, numbering, order, anchors and explanatory texts are up to the consumer. Properties which have no value are left out.",
+  "type": "object",
+  "required": ["format", "version", "meta"],
+  "properties": {
+    "format":  { "const": "ptna-analysis" },
+    "version": { "const": 1 },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title":    { "$ref": "#/$defs/message" },
+        "osm_base": { "type": "string", "description": "Date of the OSM data, e.g. '2026-10-16 19:26:27 UTC'." },
+        "areas":    { "type": "string", "description": "Date of the areas of the data." }
+      },
+      "additionalProperties": false
+    },
+    "routes": {
+      "description": "What comes from the routes file, in the order of the file. A 'header' block starts a new part; the following blocks belong to it.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/block" }
+    },
+    "unassigned":               { "$ref": "#/$defs/collection" },
+    "lines":                    { "$ref": "#/$defs/collection", "description": "Public transport lines grouped by route type ('route_types'). With a routes file these are the lines which are not part of it." },
+    "lines_without_ref":        { "$ref": "#/$defs/collection", "description": "Lines without 'ref', grouped by route type." },
+    "life_cycle_prefix":        { "$ref": "#/$defs/collection", "description": "Routes with a life-cycle prefix, grouped by route type." },
+    "excluded":                 { "$ref": "#/$defs/collection" },
+    "morerelations":            { "$ref": "#/$defs/collection" },
+    "networkdetails":           { "$ref": "#/$defs/collection" },
+    "considerednetworks":       { "$ref": "#/$defs/tables", "description": "Tables of the 'network' and 'operator' values which have been considered." },
+    "addednetworks":            { "$ref": "#/$defs/tables" },
+    "notconsiderednetworks":    { "$ref": "#/$defs/collection" },
+    "operatordetails":          { "$ref": "#/$defs/collection" },
+    "gtfsreferences":           { "$ref": "#/$defs/collection" },
+    "gtfsreferences_csv":       { "$ref": "#/$defs/collection" },
+    "gtfsreferences_relations": { "$ref": "#/$defs/collection" },
+    "conditional_on_ways":      { "$ref": "#/$defs/collection" }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+
+    "collection": {
+      "description": "The data of a topic: blocks, or blocks grouped by route type.",
+      "type": "object",
+      "properties": {
+        "content": { "type": "array", "items": { "$ref": "#/$defs/block" } },
+        "route_types": {
+          "description": "Blocks by route type ('bus', 'tram', 'train', ...).",
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "$ref": "#/$defs/block" } }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "tables": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/tableData" }
+    },
+
+    "block": {
+      "oneOf": [
+        { "$ref": "#/$defs/header" },
+        { "$ref": "#/$defs/paragraph" },
+        { "$ref": "#/$defs/list" },
+        { "$ref": "#/$defs/table" }
+      ]
+    },
+
+    "header": {
+      "type": "object",
+      "required": ["type", "level", "text"],
+      "properties": {
+        "type":  { "const": "header" },
+        "level": { "type": "integer", "minimum": 1 },
+        "text":  { "type": "string", "description": "Wiki markup." }
+      },
+      "additionalProperties": false
+    },
+
+    "paragraph": {
+      "type": "object",
+      "required": ["type", "lines"],
+      "properties": {
+        "type":   { "const": "paragraph" },
+        "markup": { "enum": ["wiki"] },
+        "loose":  { "type": "boolean" },
+        "lines":  { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+
+    "list": {
+      "type": "object",
+      "required": ["type", "items"],
+      "properties": {
+        "type":  { "const": "list" },
+        "items": { "$ref": "#/$defs/listItems" }
+      },
+      "additionalProperties": false
+    },
+
+    "listItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text":     { "$ref": "#/$defs/message" },
+          "children": { "$ref": "#/$defs/listItems" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "table": {
+      "type": "object",
+      "required": ["type", "columns", "rows"],
+      "properties": {
+        "type":    { "const": "table" },
+        "columns": { "type": "array", "items": { "type": "string" } },
+        "rows":    { "type": "array", "items": { "oneOf": [ { "$ref": "#/$defs/line" }, { "$ref": "#/$defs/subheader" } ] } }
+      },
+      "additionalProperties": false
+    },
+
+    "tableData": {
+      "description": "A table without 'type'.",
+      "type": "object",
+      "required": ["columns", "rows"],
+      "properties": {
+        "columns": { "type": "array", "items": { "type": "string" } },
+        "rows":    { "type": "array", "items": { "oneOf": [ { "$ref": "#/$defs/line" }, { "$ref": "#/$defs/subheader" } ] } }
+      },
+      "additionalProperties": false
+    },
+
+    "subheader": {
+      "description": "A group of lines: a line of the routes file, a network, an operator, ...",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type":        { "const": "subheader" },
+        "id":          { "type": "string", "description": "Target for links to this group." },
+        "refs":        { "type": "array", "items": { "$ref": "#/$defs/message" } },
+        "network":     { "type": "string" },
+        "operator":    { "type": "string" },
+        "pt_type":     { "type": "string" },
+        "colour":      { "type": "string" },
+        "text_colour": { "type": "string" },
+        "csv": {
+          "description": "Information from the CSV list of the routes file.",
+          "type": "object",
+          "properties": {
+            "comment":  { "type": "string" },
+            "from":     { "type": "string" },
+            "to":       { "type": "string" },
+            "operator": { "type": "string" },
+            "gtfs":     { "$ref": "#/$defs/message" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "line": {
+      "type": "object",
+      "required": ["type", "cells"],
+      "properties": {
+        "type":  { "const": "line" },
+        "info":  { "type": "string" },
+        "ref":   { "type": "string" },
+        "cells": { "$ref": "#/$defs/cells" }
+      },
+      "additionalProperties": false
+    },
+
+    "cells": {
+      "description": "The cells of a line by the name of the column. Columns without data have no cell.",
+      "type": "object",
+      "properties": {
+        "relation":   { "$ref": "#/$defs/relationCell" },
+        "relations":  { "$ref": "#/$defs/relationsCell" },
+        "ways":       { "$ref": "#/$defs/waysCell" },
+        "gtfs_feed":  { "$ref": "#/$defs/gtfsFeedCell" },
+        "issues":     { "$ref": "#/$defs/issueCell" },
+        "notes":      { "$ref": "#/$defs/issueCell" },
+        "type":       { "type": "array", "items": { "type": "string" } },
+        "route_type": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": { "$ref": "#/$defs/message" }
+    },
+
+    "issueCell": {
+      "description": "Issues of a line; they have no 'kind'.",
+      "type": "array",
+      "items": { "oneOf": [ { "type": "string" }, { "$ref": "#/$defs/issueData" } ] }
+    },
+
+    "relationCell": {
+      "type": "object",
+      "required": ["id", "link"],
+      "properties": {
+        "id":   { "type": "string" },
+        "link": { "$ref": "#/$defs/relationLink" }
+      },
+      "additionalProperties": false
+    },
+
+    "relationsCell": {
+      "type": "object",
+      "required": ["links"],
+      "properties": {
+        "links":     { "type": "array", "items": { "$ref": "#/$defs/relationLink" } },
+        "truncated": { "type": "boolean", "description": "There are more relations than the listed ones." }
+      },
+      "additionalProperties": false
+    },
+
+    "waysCell": {
+      "type": "object",
+      "required": ["links"],
+      "properties": {
+        "links":     { "type": "array", "items": { "$ref": "#/$defs/objectRef" } },
+        "truncated": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfsFeedCell": {
+      "type": "object",
+      "required": ["feed", "release_date", "linked"],
+      "properties": {
+        "feed":         { "type": "string" },
+        "release_date": { "type": "string" },
+        "linked":       { "type": "boolean", "description": "The GTFS database of this feed is available." }
+      },
+      "additionalProperties": false
+    },
+
+    "objectRef": {
+      "description": "A node or a way of the OSM data.",
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":    { "type": "string" },
+        "label": { "type": "string", "description": "Value of a tag of the object (e.g. 'name'), taken from OSM." }
+      },
+      "additionalProperties": false
+    },
+
+    "relationLink": {
+      "description": "A relation, and what can be done with it.",
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":       { "type": "string" },
+        "label":    { "type": "string", "description": "Value of a tag of the relation (e.g. 'ref'), taken from OSM." },
+        "relatify": { "type": "boolean", "description": "Can be edited with Relatify." },
+        "show":     { "type": "boolean", "description": "Can be shown on the map." },
+        "unroll":   { "type": "boolean" },
+        "gtfs_tag": { "$ref": "#/$defs/message", "description": "GTFS information of the relation." }
+      },
+      "additionalProperties": false
+    },
+
+    "message": {
+      "description": "A text of the analysis: a plain string (it may contain wiki or HTML markup), a number, or an object with a 'kind'.",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "$ref": "#/$defs/tr" },
+        { "$ref": "#/$defs/issue" },
+        { "$ref": "#/$defs/fmt" },
+        { "$ref": "#/$defs/cat" },
+        { "$ref": "#/$defs/join" },
+        { "$ref": "#/$defs/messageList" },
+        { "$ref": "#/$defs/listed" },
+        { "$ref": "#/$defs/tags" },
+        { "$ref": "#/$defs/foreign" },
+        { "$ref": "#/$defs/text" },
+        { "$ref": "#/$defs/anchor" },
+        { "$ref": "#/$defs/relation" },
+        { "$ref": "#/$defs/way" },
+        { "$ref": "#/$defs/node" },
+        { "$ref": "#/$defs/inject" },
+        { "$ref": "#/$defs/gtfs" },
+        { "$ref": "#/$defs/gtfsStatus" },
+        { "$ref": "#/$defs/gtfsCompare" },
+        { "$ref": "#/$defs/gtfsScores" }
+      ]
+    },
+
+    "tr": {
+      "description": "A translatable text: the msgid of the gettext catalog (and its plural).",
+      "type": "object",
+      "required": ["kind", "msgid"],
+      "properties": {
+        "kind":   { "const": "tr" },
+        "msgid":  { "type": "string" },
+        "plural": { "type": "string" },
+        "n":      { "type": "integer", "description": "Selects singular or plural." }
+      },
+      "additionalProperties": false
+    },
+
+    "issueData": {
+      "description": "A message of the issue catalog (modules/PtnaOutput/Issues.pm): the code is the stable identifier. An issue about a list of objects has 'items' and 'more'.",
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "kind":  { "const": "issue", "description": "Only where an issue is used as a message." },
+        "code":  { "type": "string" },
+        "n":     { "type": "integer", "description": "Selects singular or plural." },
+        "args":  {
+          "description": "In the order of the placeholders. Texts from OSM are plain strings, tags are a list of { key, value }.",
+          "type": "array",
+          "items": { "oneOf": [ { "$ref": "#/$defs/message" }, { "$ref": "#/$defs/tagList" }, { "type": "null" } ] }
+        },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/message" } },
+        "more":  { "type": "integer", "description": "Number of objects not listed in 'items'." }
+      },
+      "additionalProperties": false
+    },
+
+    "issue": {
+      "description": "An issue used as a message.",
+      "allOf": [ { "$ref": "#/$defs/issueData" }, { "required": ["kind"] } ]
+    },
+
+    "fmt": {
+      "description": "printf-like format with arguments.",
+      "type": "object",
+      "required": ["kind", "format", "args"],
+      "properties": {
+        "kind":   { "const": "fmt" },
+        "format": { "$ref": "#/$defs/message" },
+        "args":   { "type": "array", "items": { "$ref": "#/$defs/message" } }
+      },
+      "additionalProperties": false
+    },
+
+    "cat": {
+      "description": "Concatenation of messages.",
+      "type": "object",
+      "required": ["kind", "parts"],
+      "properties": {
+        "kind":  { "const": "cat" },
+        "parts": { "type": "array", "items": { "$ref": "#/$defs/message" } }
+      },
+      "additionalProperties": false
+    },
+
+    "join": {
+      "type": "object",
+      "required": ["kind", "separator", "items"],
+      "properties": {
+        "kind":      { "const": "join" },
+        "separator": { "$ref": "#/$defs/message" },
+        "items":     { "type": "array", "items": { "$ref": "#/$defs/message" } }
+      },
+      "additionalProperties": false
+    },
+
+    "messageList": {
+      "description": "A list of values; the consumer chooses the separators from the style.",
+      "type": "object",
+      "required": ["kind", "style", "items"],
+      "properties": {
+        "kind":  { "const": "list" },
+        "style": { "enum": ["comma", "or", "or_ref", "role_or"] },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/message" } }
+      },
+      "additionalProperties": false
+    },
+
+    "listed": {
+      "description": "'head: item, item and N more'.",
+      "type": "object",
+      "required": ["kind", "head", "items"],
+      "properties": {
+        "kind":  { "const": "listed" },
+        "head":  { "$ref": "#/$defs/message" },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/message" } },
+        "more":  { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+
+    "tagList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "value"],
+        "properties": {
+          "key":   { "$ref": "#/$defs/message" },
+          "value": { "$ref": "#/$defs/message" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "tags": {
+      "description": "OSM tags.",
+      "type": "object",
+      "required": ["kind", "tags"],
+      "properties": {
+        "kind": { "const": "tags" },
+        "tags": { "$ref": "#/$defs/tagList" }
+      },
+      "additionalProperties": false
+    },
+
+    "foreign": {
+      "description": "A text taken from the OSM data (e.g. a name); never translated.",
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind":  { "const": "foreign" },
+        "value": { "$ref": "#/$defs/message" }
+      },
+      "additionalProperties": false
+    },
+
+    "text": {
+      "description": "A plain text.",
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind":  { "const": "text" },
+        "value": { "$ref": "#/$defs/message" }
+      },
+      "additionalProperties": false
+    },
+
+    "anchor": {
+      "description": "A link to a part of the page.",
+      "type": "object",
+      "required": ["kind", "id", "text"],
+      "properties": {
+        "kind": { "const": "anchor" },
+        "id":   { "type": "string" },
+        "text": { "$ref": "#/$defs/message" }
+      },
+      "additionalProperties": false
+    },
+
+    "relation": {
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind":   { "const": "relation" },
+        "object": { "$ref": "#/$defs/relationLink" }
+      },
+      "additionalProperties": false
+    },
+
+    "way": {
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind":   { "const": "way" },
+        "object": { "$ref": "#/$defs/objectRef" }
+      },
+      "additionalProperties": false
+    },
+
+    "node": {
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind":   { "const": "node" },
+        "object": { "$ref": "#/$defs/objectRef" }
+      },
+      "additionalProperties": false
+    },
+
+    "inject": {
+      "description": "A relation with tags to be added to it.",
+      "type": "object",
+      "required": ["kind", "relation", "tags"],
+      "properties": {
+        "kind":     { "const": "inject" },
+        "relation": { "type": "string" },
+        "tags":     { "type": "array" }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfsObject": {
+      "description": "A route, a trip or a shape of a GTFS feed and its status.",
+      "type": "object",
+      "required": ["what", "status"],
+      "properties": {
+        "what":         { "enum": ["route", "trip", "shape"] },
+        "status":       { "enum": ["valid", "past", "future", "previous", "missing", "no_shapes", "no_id", "no_db", "no_feed"], "description": "'previous': only in the previous release." },
+        "feed":         { "type": "string" },
+        "release_date": { "type": "string" },
+        "tag":          { "type": "string", "description": "The OSM tag which holds the id." },
+        "id":           { "type": "string" },
+        "from":         { "type": "string", "description": "Start of the validity." },
+        "to":           { "type": "string", "description": "End of the validity." },
+        "route_only":   { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfs": {
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind":   { "const": "gtfs" },
+        "object": { "$ref": "#/$defs/gtfsObject" }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfsStatus": {
+      "description": "The status of a GTFS object, used in problem reports.",
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind":   { "const": "gtfs_status" },
+        "object": { "$ref": "#/$defs/gtfsObject" }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfsCompare": {
+      "description": "A link to the comparison of a GTFS object with an OSM relation.",
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind": { "const": "gtfs_compare" },
+        "object": {
+          "type": "object",
+          "required": ["what", "feed", "release_date", "id", "relation"],
+          "properties": {
+            "what":         { "enum": ["route", "trip", "shape"] },
+            "feed":         { "type": "string" },
+            "release_date": { "type": "string" },
+            "id":           { "type": "string" },
+            "relation":     { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "gtfsScores": {
+      "description": "A link to the scores of a GTFS route.",
+      "type": "object",
+      "required": ["kind", "object"],
+      "properties": {
+        "kind": { "const": "gtfs_scores" },
+        "object": {
+          "type": "object",
+          "required": ["feed", "release_date", "route_id"],
+          "properties": {
+            "feed":         { "type": "string" },
+            "release_date": { "type": "string" },
+            "route_id":     { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

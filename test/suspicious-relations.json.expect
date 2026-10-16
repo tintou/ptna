@@ -1,0 +1,709 @@
+{
+   "considerednetworks" : [
+      {
+         "columns" : [
+            "network",
+            "number",
+            "relations"
+         ],
+         "rows" : [
+            {
+               "cells" : {
+                  "number" : 1,
+                  "relations" : {
+                     "links" : [
+                        {
+                           "id" : "-113803",
+                           "show" : true
+                        }
+                     ]
+                  }
+               },
+               "info" : "???",
+               "ref" : "???",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "network" : "network",
+                  "number" : 4,
+                  "relations" : {
+                     "links" : [
+                        {
+                           "id" : "-113886",
+                           "label" : "100",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-113964",
+                           "label" : "100",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-113978",
+                           "label" : "100",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-113982",
+                           "label" : "100",
+                           "unroll" : true
+                        }
+                     ]
+                  }
+               },
+               "info" : "network",
+               "ref" : "???",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "network" : "network2",
+                  "number" : 1,
+                  "relations" : {
+                     "links" : [
+                        {
+                           "id" : "-113807",
+                           "label" : "43",
+                           "relatify" : true,
+                           "show" : true
+                        }
+                     ]
+                  }
+               },
+               "info" : "network2",
+               "ref" : "???",
+               "type" : "line"
+            }
+         ]
+      }
+   ],
+   "format" : "ptna-analysis",
+   "life_cycle_prefix" : {
+      "content" : [],
+      "route_types" : {
+         "bus" : [
+            {
+               "columns" : [
+                  "ref",
+                  "relation",
+                  "type",
+                  "life-cycle-prefix",
+                  "name",
+                  "network",
+                  "operator",
+                  "from",
+                  "via",
+                  "to",
+                  "PTv",
+                  "issues",
+                  "notes"
+               ],
+               "rows" : [
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "life-cycle-prefix" : "disused:route_master",
+                        "name" : "Bus 100",
+                        "network" : "network",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "network"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "Operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "Operator",
+                        "ref" : "100",
+                        "relation" : {
+                           "id" : "-113982",
+                           "link" : {
+                              "id" : "-113982",
+                              "unroll" : true
+                           }
+                        },
+                        "type" : [
+                           "route_master"
+                        ]
+                     },
+                     "info" : "-113982",
+                     "ref" : "100",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "from",
+                        "life-cycle-prefix" : "disused:route",
+                        "name" : "Bus 43: from => to",
+                        "network" : "network2",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "comment",
+                                 "'network' is different"
+                              ],
+                              "code" : "note.tag_value"
+                           },
+                           {
+                              "args" : [
+                                 "network2"
+                              ],
+                              "code" : "note.network_equal"
+                           }
+                        ],
+                        "ref" : "43",
+                        "relation" : {
+                           "id" : "-113807",
+                           "link" : {
+                              "id" : "-113807",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "to",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-113807",
+                     "ref" : "43",
+                     "type" : "line"
+                  }
+               ],
+               "type" : "table"
+            }
+         ]
+      }
+   },
+   "lines" : {
+      "content" : [],
+      "route_types" : {
+         "bus" : [
+            {
+               "columns" : [
+                  "ref",
+                  "relation",
+                  "type",
+                  "name",
+                  "network",
+                  "operator",
+                  "from",
+                  "via",
+                  "to",
+                  "PTv",
+                  "issues",
+                  "notes"
+               ],
+               "rows" : [
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "First Street",
+                        "name" : "Bus 100: First Street => Second Street",
+                        "network" : "network",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "network"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "Operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "Operator",
+                        "ref" : "100",
+                        "relation" : {
+                           "id" : "-113886",
+                           "link" : {
+                              "id" : "-113886",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "Second Street",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-113886",
+                     "ref" : "100",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "First Avenue",
+                        "name" : "Bus 100: First Avenue => Second Avenue",
+                        "network" : "network",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "network"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "Operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "Operator",
+                        "ref" : "100",
+                        "relation" : {
+                           "id" : "-113964",
+                           "link" : {
+                              "id" : "-113964",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "Second Avenue",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-113964",
+                     "ref" : "100",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "Third Avenue",
+                        "name" : "Bus 100: Third Avenue => Fourth Avenue",
+                        "network" : "network",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "network"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "Operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "Operator",
+                        "ref" : "100",
+                        "relation" : {
+                           "id" : "-113978",
+                           "link" : {
+                              "id" : "-113978",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "Fourth Avenue",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-113978",
+                     "ref" : "100",
+                     "type" : "line"
+                  }
+               ],
+               "type" : "table"
+            }
+         ]
+      }
+   },
+   "lines_without_ref" : {
+      "content" : [],
+      "route_types" : {
+         "disused:bus" : [
+            {
+               "columns" : [
+                  "relation",
+                  "type",
+                  "name",
+                  "network",
+                  "operator",
+                  "from",
+                  "via",
+                  "to",
+                  "PTv",
+                  "issues",
+                  "notes"
+               ],
+               "rows" : [
+                  {
+                     "cells" : {
+                        "issues" : [
+                           {
+                              "code" : "ref.not_set"
+                           },
+                           {
+                              "code" : "name.not_set"
+                           },
+                           {
+                              "code" : "network.not_set"
+                           }
+                        ],
+                        "relation" : {
+                           "id" : "-113803",
+                           "link" : {
+                              "id" : "-113803",
+                              "show" : true
+                           }
+                        },
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-113803",
+                     "ref" : "???",
+                     "type" : "line"
+                  }
+               ],
+               "type" : "table"
+            }
+         ]
+      }
+   },
+   "meta" : {},
+   "morerelations" : {
+      "content" : [
+         {
+            "items" : [
+               {
+                  "children" : [
+                     {
+                        "children" : [],
+                        "text" : "'route_master' = 'road', 'route' = 'road'"
+                     }
+                  ],
+                  "text" : "'type' = 'route_master', 'type' = 'route'"
+               }
+            ],
+            "type" : "list"
+         },
+         {
+            "columns" : [
+               "relation",
+               "type",
+               "route_type",
+               "ref",
+               "name",
+               "network",
+               "operator",
+               "from",
+               "via",
+               "to",
+               "PTv",
+               "public_transport"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "from" : "from",
+                     "name" : "Bus 43",
+                     "network" : "network",
+                     "ref" : "43",
+                     "relation" : {
+                        "id" : "-113804",
+                        "link" : {
+                           "id" : "-113804"
+                        }
+                     },
+                     "route_type" : [
+                        "'route_master' = 'bus'"
+                     ],
+                     "to" : "to",
+                     "type" : [
+                        "disused:route_master"
+                     ]
+                  },
+                  "info" : "-113804",
+                  "ref" : "43",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "name" : "'route' is not set",
+                     "relation" : {
+                        "id" : "-113806",
+                        "link" : {
+                           "id" : "-113806"
+                        }
+                     },
+                     "type" : [
+                        "route"
+                     ]
+                  },
+                  "info" : "-113806",
+                  "ref" : "???",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "from" : "from",
+                     "name" : "Bus 53: from => to",
+                     "network" : "network",
+                     "ref" : "53",
+                     "relation" : {
+                        "id" : "-113809",
+                        "link" : {
+                           "id" : "-113809"
+                        }
+                     },
+                     "route_type" : [
+                        "disused:bus"
+                     ],
+                     "to" : "to",
+                     "type" : [
+                        "route"
+                     ]
+                  },
+                  "info" : "-113809",
+                  "ref" : "53",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "from" : "from",
+                     "name" : "Bus 43: from => to",
+                     "network" : "network",
+                     "ref" : "43",
+                     "relation" : {
+                        "id" : "-113810",
+                        "link" : {
+                           "id" : "-113810"
+                        }
+                     },
+                     "route_type" : [
+                        "'route' = 'bus'"
+                     ],
+                     "to" : "to",
+                     "type" : [
+                        "disused:route"
+                     ]
+                  },
+                  "info" : "-113810",
+                  "ref" : "43",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "from" : "from",
+                     "name" : "Bus 43: from => to",
+                     "network" : "network",
+                     "relation" : {
+                        "id" : "-113811",
+                        "link" : {
+                           "id" : "-113811"
+                        }
+                     },
+                     "route_type" : [
+                        "'route' = 'bus'"
+                     ],
+                     "to" : "to",
+                     "type" : [
+                        "'disused:type' = 'route'"
+                     ]
+                  },
+                  "info" : "-113811",
+                  "ref" : "???",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "from" : "from",
+                     "name" : "Bus 63: from => to",
+                     "network" : "network",
+                     "ref" : "63",
+                     "relation" : {
+                        "id" : "-113812",
+                        "link" : {
+                           "id" : "-113812"
+                        }
+                     },
+                     "route_type" : [
+                        "'disused:route' = 'disused:bus'"
+                     ],
+                     "to" : "to",
+                     "type" : [
+                        "'disused:type' = 'disused:route'"
+                     ]
+                  },
+                  "info" : "-113812",
+                  "ref" : "63",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "PTv" : "2",
+                     "name" : "Bus 101",
+                     "network" : "network",
+                     "operator" : "Operator",
+                     "ref" : "101",
+                     "relation" : {
+                        "id" : "-113855",
+                        "link" : {
+                           "id" : "-113855"
+                        }
+                     },
+                     "route_type" : [
+                        "'route_master' = 'bus'"
+                     ],
+                     "type" : [
+                        "'disused:type' = 'route_master'",
+                        "'suspended:type' = 'suspended:route_master'"
+                     ]
+                  },
+                  "info" : "-113855",
+                  "ref" : "101",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "networkdetails" : {
+      "content" : []
+   },
+   "notconsiderednetworks" : {
+      "content" : [
+         {
+            "columns" : [
+               "network",
+               "number",
+               "relations"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "network" : "network",
+                     "number" : 1,
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-113809",
+                              "label" : "53"
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "network",
+                  "ref" : "???",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "operatordetails" : {
+      "content" : [
+         {
+            "columns" : [
+               "operator",
+               "number",
+               "relations"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "number" : 4,
+                     "operator" : "Operator",
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-113886",
+                              "label" : "100",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-113964",
+                              "label" : "100",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-113978",
+                              "label" : "100",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-113982",
+                              "label" : "100",
+                              "unroll" : true
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "number" : 4,
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-113803",
+                              "show" : true
+                           },
+                           {
+                              "id" : "-113807",
+                              "label" : "43",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-113808",
+                              "label" : "43"
+                           },
+                           {
+                              "id" : "-113809",
+                              "label" : "53"
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "routes" : [],
+   "version" : 1
+}

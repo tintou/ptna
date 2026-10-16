@@ -43,7 +43,7 @@ use Encode;
 use Scalar::Util qw( blessed );
 use Locale::gettext qw();
 
-our @EXPORT_OK = qw( gettext ngettext msg jointext mkey unkey foreign text_msg anchor_msg relation_msg way_msg node_msg gtfs_msg gtfs_status_msg gtfs_compare_msg gtfs_scores_msg inject_msg issue_msg tags listed list_msg render is_msg );
+our @EXPORT_OK = qw( gettext ngettext msg jointext mkey unkey foreign text_msg anchor_msg relation_msg way_msg node_msg gtfs_msg gtfs_status_msg gtfs_compare_msg gtfs_scores_msg inject_msg issue_msg tags listed list_msg render to_data is_msg );
 
 use overload
     '.'         => \&_concat,
@@ -231,7 +231,7 @@ sub node_msg {
 #
 # references to GTFS data: the link to the GTFS object, the description of its status, the link to
 # the comparison with the OSM relation and the scores of the CSV based comparison;
-# the object is a plain data structure
+# the object is the plain data structure which is documented in PtnaOutput::Json
 #
 #############################################################################################
 
@@ -311,6 +311,88 @@ sub render {
         return $h->{'inject'}->( $v->{'id'}, @{$v->{'kv'}} );
     }
     return $h->{$k}->( $v->{'link'} );
+}
+
+
+#############################################################################################
+#
+# the raw structure of a message for machine-readable output: nothing is translated or formatted
+#
+#############################################################################################
+
+# the arguments of an issue are known by the issue: plain values and lists of key/value pairs for tags
+sub issue_arg {
+    my $a = shift;
+
+    if ( is_msg( $a ) ) {
+        return to_data( $a->{'text'} )                                    if ( $a->{'k'} eq 'foreign' || $a->{'k'} eq 'text' );
+        return to_data( $a )->{'tags'}                                    if ( $a->{'k'} eq 'tags' );
+    }
+    return to_data( $a );
+}
+
+sub to_data {
+    my $v = shift;
+
+    if ( ref( $v ) eq 'ARRAY' ) {
+        return [ map { to_data( $_ ); } @{$v} ];
+    } elsif ( ref( $v ) eq 'HASH' && !is_msg( $v ) ) {
+        return { map { $_ => to_data( $v->{$_} ); } keys( %{$v} ) };
+    } elsif ( !is_msg( $v ) ) {
+        return $v;
+    }
+
+    my $k = $v->{'k'};
+    my %d = ( 'kind' => $k );
+
+    if ( $k eq 'tr' ) {
+        $d{'msgid'}  = $v->{'id'};
+        $d{'plural'} = $v->{'plural'}   if ( defined( $v->{'plural'} ) );
+        $d{'n'}      = $v->{'n'}        if ( defined( $v->{'n'} ) );
+    } elsif ( $k eq 'fmt' ) {
+        $d{'format'} = to_data( $v->{'fmt'} );
+        $d{'args'}   = to_data( $v->{'args'} );
+    } elsif ( $k eq 'cat' ) {
+        $d{'parts'}  = to_data( $v->{'parts'} );
+    } elsif ( $k eq 'join' ) {
+        $d{'separator'} = to_data( $v->{'sep'} );
+        $d{'items'}     = to_data( $v->{'items'} );
+    } elsif ( $k eq 'list' ) {
+        $d{'style'}  = $v->{'style'};
+        $d{'items'}  = to_data( $v->{'items'} );
+    } elsif ( $k eq 'listed' ) {
+        # an issue about a list of objects is an issue which has 'items' and 'more'
+        my $head = $v->{'head'};
+        $head    = $head->{'text'}    if ( is_msg( $head ) && $head->{'k'} eq 'foreign' && is_msg( $head->{'text'} ) );
+        if ( is_msg( $head ) && $head->{'k'} eq 'issue' ) {
+            my $d  = to_data( $head );
+            $d->{'items'} = to_data( $v->{'items'} );
+            $d->{'more'}  = $v->{'more'}     if ( defined( $v->{'more'} ) );
+            return $d;
+        }
+        $d{'head'}   = to_data( $v->{'head'} );
+        $d{'items'}  = to_data( $v->{'items'} );
+        $d{'more'}   = $v->{'more'}     if ( defined( $v->{'more'} ) );
+    } elsif ( $k eq 'issue' ) {
+        $d{'code'}   = $v->{'code'};
+        $d{'n'}      = $v->{'n'}                    if ( defined( $v->{'n'} ) );
+        $d{'args'}   = [ map { issue_arg( $_ ); } @{$v->{'args'}} ]    if ( $v->{'args'} );
+    } elsif ( $k eq 'tags' ) {
+        my @kv = @{$v->{'kv'}};
+        $d{'tags'}   = [];
+        push( @{$d{'tags'}}, { 'key' => to_data( shift( @kv ) ), 'value' => to_data( shift( @kv ) ) } )    while ( @kv );
+    } elsif ( $k eq 'foreign' || $k eq 'text' ) {
+        $d{'value'}  = to_data( $v->{'text'} );
+    } elsif ( $k eq 'anchor' ) {
+        $d{'id'}     = $v->{'id'};
+        $d{'text'}   = to_data( $v->{'text'} );
+    } elsif ( $k eq 'inject' ) {
+        $d{'relation'} = $v->{'id'};
+        $d{'tags'}     = to_data( $v->{'kv'} );
+    } else {
+        $d{'object'} = to_data( $v->{'link'} );
+    }
+    return \%d;
 }
 
 

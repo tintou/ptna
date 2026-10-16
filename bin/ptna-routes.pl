@@ -28,6 +28,7 @@ use OSM::Geo            qw( Init PlatformToNodeDistance ConvertMetersToFeet isNo
 use RoutesList;
 use GTFS::GTFSvsOSM     qw( Init Summary );
 use PtnaOutput::Html    qw( html_escape wiki2html );
+use PtnaOutput::Json    qw();
 use PtnaOutput::Issues qw( issue note detail );
 use PtnaOutput::Msg     qw( gettext ngettext msg listed list_msg tags jointext mkey unkey foreign text_msg anchor_msg relation_msg way_msg node_msg gtfs_msg gtfs_status_msg gtfs_compare_msg gtfs_scores_msg inject_msg );
 use GTFS::PtnaSQLite    qw( setTimeZoneDate setPathToWork getRouteIdStatus getTripIdStatus getShapeIdStatus getGtfsRouteIdLink getGtfsTripIdLink getGtfsShapeIdLink getGtfsLinkToRoutes );
@@ -104,6 +105,7 @@ my %deprecated_gtfs_terms              = ( 'id'          => '',
 ####################################################################################################################
 
 my $opt_language                    = undef;
+my $opt_json_file                   = undef;
 my $opt_test                        = undef;
 my $verbose                         = undef;
 my $debug                           = undef;
@@ -170,6 +172,7 @@ my $page_title                      = undef;
 GetOptions( 'help'                          =>  \$help,                         # -h or --help                      help
             'man'                           =>  \$man_page,                     # --man                             manual pages
             'language=s'                    =>  \$opt_language,                 # --language=de                     I18N
+            'json-file=s'                   =>  \$opt_json_file,                # --json-file=FILE                  additionally write the raw (untranslated) result as JSON
             'verbose'                       =>  \$verbose,                      # --verbose
             'debug'                         =>  \$debug,                        # --debug
             'allow-coach'                   =>  \$allow_coach,                  # --allow-coach                     allow 'coach' als valid routetype
@@ -7389,6 +7392,7 @@ sub printFinalFooter {
                             'colours'             => \%colour_table,
                             'no_additional_navigation' => $no_additional_navigation,
                           );
+    PtnaOutput::Json::write_file( \%DOCUMENT, $opt_json_file )     if ( $opt_json_file );
     PtnaOutput::Html::render( \%DOCUMENT );
 }
 
@@ -7894,18 +7898,9 @@ sub printTableLine {
     my %hash        = ( @_ );
     my $ref         = $hash{'ref'} || '???';
     my $info        = $hash{'relation'} ? $hash{'relation'}       : ( $hash{'network'} ? $hash{'network'} : $ref);
-    my $id          = undef;
     my %cells       = ();
 
-    if ( $hash{'relation'} ) {
-        $id = html_escape($hash{'relation'});
-        $id =~ s/[^0-9A-Za-z_.-]/_/g;                                           # other characters are not allowed in 'id'
-        if ( $id_markers{$id} ) {                                               # don't print id="<relation-id>" a second time, once is enough
-            $id = undef;
-        } else {
-            $id_markers{$id} = 1;
-        }
-    } elsif ( $hash{'gtfs_feed'} ) {
+    if ( !$hash{'relation'} && $hash{'gtfs_feed'} ) {
         $info = 'GTFS';
         if ( $hash{'date'} ) {
             $ref  = $hash{'gtfs_feed'} . '-' . $hash{'date'};
@@ -7939,7 +7934,7 @@ sub printTableLine {
     }
 
     if ( $current_table ) {
-        push( @{$current_table->{'rows'}}, { 'type' => 'line', ( defined( $id ) ? ( 'id' => $id ) : () ), 'info' => $info, 'ref' => $ref, 'cells' => \%cells } );
+        push( @{$current_table->{'rows'}}, { 'type' => 'line', 'info' => $info, 'ref' => $ref, 'cells' => \%cells } );
     }
 }
 

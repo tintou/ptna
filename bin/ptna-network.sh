@@ -114,6 +114,7 @@ SETTINGS_FILE="settings.sh"
 TALK_FILE="$PREFIX-Talk.wiki"
 
 HTML_FILE="$PREFIX-Analysis.html"
+JSON_FILE="$PREFIX-Analysis.json"
 DIFF_FILE="$PREFIX-Analysis.html.diff"
 DIFF_HTML_FILE="$PREFIX-Analysis.diff.html"
 SAVE_FILE="$PREFIX-Analysis.html.save"
@@ -229,7 +230,7 @@ echo $(date "+%Y-%m-%d %H:%M:%S %Z") "Statistic entries with id = $PTNA_NETWORK_
 if [ "$cleancreated" = "true" ]
 then
     echo $(date "+%Y-%m-%d %H:%M:%S %Z") "Removing temporary files"
-    rm -f $WORK_LOC/$HTML_FILE $WORK_LOC/$DIFF_FILE $WORK_LOC/$DIFF_HTML_FILE $WORK_LOC/$SAVE_FILE $OSM_XML_FILE_ABSOLUTE.part.*
+    rm -f $WORK_LOC/$HTML_FILE $WORK_LOC/$JSON_FILE $WORK_LOC/$DIFF_FILE $WORK_LOC/$DIFF_HTML_FILE $WORK_LOC/$SAVE_FILE $OSM_XML_FILE_ABSOLUTE.part.*
     if [ -d $OSM_XML_FILE_ABSOLUTE.lock ]
     then
         rmdir $OSM_XML_FILE_ABSOLUTE.lock
@@ -986,6 +987,7 @@ then
                                 --operator-regex="$OPERATOR_REGEX" \
                                 --routes-file=$WORK_LOC/$ROUTES_FILE \
                                 --osm-xml-file=$OSM_XML_FILE_ABSOLUTE \
+                                --json-file=$WORK_LOC/$JSON_FILE \
                                 $OPTION_NOPRE \
                                 2>&1 > $WORK_LOC/$HTML_FILE | tee $WORK_LOC/$HTML_FILE.log
                 stop=$(date --utc "+%s")
@@ -1193,6 +1195,7 @@ then
                     then
                         echo $(date "+%Y-%m-%d %H:%M:%S %Z")  "Copying '$WORK_LOC/$HTML_FILE' to '$RESULTS_LOC'"
                         cp $WORK_LOC/$HTML_FILE $RESULTS_LOC
+                        [ -s $WORK_LOC/$JSON_FILE ] && cp $WORK_LOC/$JSON_FILE $RESULTS_LOC
 
                         if [ -n "$(which htmldiff.pl)" ]
                         then

@@ -1,0 +1,349 @@
+{
+   "considerednetworks" : [
+      {
+         "columns" : [
+            "network",
+            "number",
+            "relations"
+         ],
+         "rows" : [
+            {
+               "cells" : {
+                  "network" : "Test",
+                  "number" : 3,
+                  "relations" : {
+                     "links" : [
+                        {
+                           "id" : "-112881",
+                           "label" : "001",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-112882",
+                           "label" : "001",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-112883",
+                           "label" : "001",
+                           "unroll" : true
+                        }
+                     ]
+                  }
+               },
+               "info" : "Test",
+               "ref" : "???",
+               "type" : "line"
+            }
+         ]
+      }
+   ],
+   "format" : "ptna-analysis",
+   "lines" : {
+      "content" : [],
+      "route_types" : {
+         "bus" : [
+            {
+               "columns" : [
+                  "ref",
+                  "relation",
+                  "type",
+                  "name",
+                  "network",
+                  "operator",
+                  "from",
+                  "via",
+                  "to",
+                  "PTv",
+                  "issues",
+                  "notes"
+               ],
+               "rows" : [
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "name" : "Bus 001",
+                        "network" : "Test",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "Test"
+                              ],
+                              "code" : "note.network_equal"
+                           }
+                        ],
+                        "ref" : "001",
+                        "relation" : {
+                           "id" : "-112883",
+                           "link" : {
+                              "id" : "-112883",
+                              "unroll" : true
+                           }
+                        },
+                        "type" : [
+                           "route_master"
+                        ]
+                     },
+                     "info" : "-112883",
+                     "ref" : "001",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "A-Village",
+                        "issues" : [
+                           {
+                              "args" : [
+                                 "platform",
+                                 "disused:public_transport"
+                              ],
+                              "code" : "ptv2.role_pt_unset_but_set",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-162026",
+                                       "label" : "B+-Village"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "stop",
+                                 "disused:public_transport"
+                              ],
+                              "code" : "ptv2.role_pt_unset_but_set",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-162025",
+                                       "label" : "B+-Village"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "backward"
+                              ],
+                              "code" : "ptv2.wrong_role",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-161853",
+                                       "label" : "Mainstreet"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "hail_and_ride"
+                              ],
+                              "code" : "ptv2.wrong_role",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-161843",
+                                       "label" : "B-Village"
+                                    }
+                                 }
+                              ]
+                           }
+                        ],
+                        "name" : "Bus 001: A-Village => B+-Village => C-Village (right) => D-Village",
+                        "network" : "Test",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "Test"
+                              ],
+                              "code" : "note.network_equal"
+                           }
+                        ],
+                        "ref" : "001",
+                        "relation" : {
+                           "id" : "-112881",
+                           "link" : {
+                              "id" : "-112881",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "D-Village",
+                        "type" : [
+                           "route"
+                        ],
+                        "via" : "B+-Village;C-Village (right)"
+                     },
+                     "info" : "-112881",
+                     "ref" : "001",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "C-Village",
+                        "issues" : [
+                           {
+                              "args" : [
+                                 "platform_exit_only"
+                              ],
+                              "code" : "ptv2.role_pt_unset",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-161987",
+                                       "label" : "A-Village"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "platform"
+                              ],
+                              "code" : "ptv2.role_pt_unset",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-161842",
+                                       "label" : "B-Village"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "platform_entry_only"
+                              ],
+                              "code" : "ptv2.role_pt_unset",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-161849"
+                                    }
+                                 }
+                              ]
+                           },
+                           {
+                              "args" : [
+                                 "platform"
+                              ],
+                              "code" : "ptv2.role_pt_unset",
+                              "items" : [
+                                 {
+                                    "kind" : "relation",
+                                    "object" : {
+                                       "id" : "-112885",
+                                       "label" : "C-Village (left)"
+                                    }
+                                 }
+                              ]
+                           }
+                        ],
+                        "name" : "Bus 001: C-Village => B-Village => A-Village",
+                        "network" : "Test",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "comment",
+                                 "4 errors"
+                              ],
+                              "code" : "note.tag_value"
+                           },
+                           {
+                              "args" : [
+                                 "Test"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "code" : "ptv2.no_platform"
+                           }
+                        ],
+                        "ref" : "001",
+                        "relation" : {
+                           "id" : "-112882",
+                           "link" : {
+                              "id" : "-112882",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "A-Village",
+                        "type" : [
+                           "route"
+                        ],
+                        "via" : "B-Village"
+                     },
+                     "info" : "-112882",
+                     "ref" : "001",
+                     "type" : "line"
+                  }
+               ],
+               "type" : "table"
+            }
+         ]
+      }
+   },
+   "meta" : {},
+   "networkdetails" : {
+      "content" : []
+   },
+   "operatordetails" : {
+      "content" : [
+         {
+            "columns" : [
+               "operator",
+               "number",
+               "relations"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "number" : 3,
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-112881",
+                              "label" : "001",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-112882",
+                              "label" : "001",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-112883",
+                              "label" : "001",
+                              "unroll" : true
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "routes" : [],
+   "version" : 1
+}

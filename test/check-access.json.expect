@@ -1,0 +1,1471 @@
+{
+   "conditional_on_ways" : {
+      "content" : [
+         {
+            "columns" : [
+               "conditional_access",
+               "ways",
+               "relations"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "conditional_access" : "'bus:conditional'='yes @ operator'",
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-152370",
+                              "label" : "011",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152371",
+                              "label" : "011",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        ]
+                     },
+                     "ways" : {
+                        "links" : [
+                           {
+                              "id" : "-152347",
+                              "label" : "Way 18"
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "considerednetworks" : [
+      {
+         "columns" : [
+            "network",
+            "number",
+            "relations"
+         ],
+         "rows" : [
+            {
+               "cells" : {
+                  "network" : "Test",
+                  "number" : 11,
+                  "relations" : {
+                     "links" : [
+                        {
+                           "id" : "-152367",
+                           "label" : "001",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152368",
+                           "label" : "001",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152369",
+                           "label" : "001",
+                           "unroll" : true
+                        },
+                        {
+                           "id" : "-152370",
+                           "label" : "011",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152371",
+                           "label" : "011",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152372",
+                           "label" : "011",
+                           "unroll" : true
+                        },
+                        {
+                           "id" : "-152373",
+                           "label" : "021",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152374",
+                           "label" : "021",
+                           "relatify" : true,
+                           "show" : true
+                        },
+                        {
+                           "id" : "-152375",
+                           "label" : "021",
+                           "unroll" : true
+                        },
+                        {
+                           "id" : "-152391",
+                           "label" : "SB01",
+                           "relatify" : true,
+                           "show" : true
+                        }
+                     ],
+                     "truncated" : true
+                  }
+               },
+               "info" : "Test",
+               "ref" : "???",
+               "type" : "line"
+            }
+         ]
+      }
+   ],
+   "format" : "ptna-analysis",
+   "lines" : {
+      "content" : [],
+      "route_types" : {
+         "bus" : [
+            {
+               "columns" : [
+                  "ref",
+                  "relation",
+                  "type",
+                  "name",
+                  "network",
+                  "operator",
+                  "from",
+                  "via",
+                  "to",
+                  "PTv",
+                  "issues",
+                  "notes"
+               ],
+               "rows" : [
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "A-School",
+                        "issues" : [
+                           {
+                              "args" : [
+                                 "note",
+                                 "school=yes is not set on route relation, vehicle=no applies for Way 41, Way 43, and Way 44"
+                              ],
+                              "code" : "note.tag_value"
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "vehicle",
+                                       "value" : "no"
+                                    }
+                                 ],
+                                 "bus",
+                                 "bus"
+                              ],
+                              "code" : "access.way_no_psv",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-152481",
+                                       "label" : "Way 41"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-152496",
+                                       "label" : "Way 43"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-152590",
+                                       "label" : "Way 44"
+                                    }
+                                 }
+                              ],
+                              "n" : 3
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "access",
+                                       "value" : "no"
+                                    }
+                                 ],
+                                 "bus",
+                                 "bus"
+                              ],
+                              "code" : "access.platform",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152409",
+                                       "label" : "A-School"
+                                    }
+                                 }
+                              ],
+                              "n" : 1
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "access",
+                                       "value" : "no"
+                                    }
+                                 ]
+                              ],
+                              "code" : "access.platform_foot",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152409",
+                                       "label" : "A-School"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152420",
+                                       "label" : "B-School"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152456",
+                                       "label" : "C-School"
+                                    }
+                                 }
+                              ],
+                              "n" : 3
+                           }
+                        ],
+                        "name" : "Bus SB01: A-School => C-School",
+                        "network" : "Test",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "Test"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "operator",
+                        "ref" : "SB01",
+                        "relation" : {
+                           "id" : "-152391",
+                           "link" : {
+                              "id" : "-152391",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "C-School",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-152391",
+                     "ref" : "SB01",
+                     "type" : "line"
+                  },
+                  {
+                     "cells" : {
+                        "PTv" : "2",
+                        "from" : "A-School",
+                        "issues" : [
+                           {
+                              "args" : [
+                                 "note",
+                                 "school=yes is set on route relation, Way 41 and Way 43 are OK, but there is a single way (Way 44) with school_bus=no in addition to vehicle=no"
+                              ],
+                              "code" : "note.tag_value"
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "school_bus",
+                                       "value" : "no"
+                                    }
+                                 ],
+                                 "bus",
+                                 "bus"
+                              ],
+                              "code" : "access.way_no_psv",
+                              "items" : [
+                                 {
+                                    "kind" : "way",
+                                    "object" : {
+                                       "id" : "-152590",
+                                       "label" : "Way 44"
+                                    }
+                                 }
+                              ],
+                              "n" : 1
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "access",
+                                       "value" : "no"
+                                    }
+                                 ],
+                                 "bus",
+                                 "bus"
+                              ],
+                              "code" : "access.platform",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152409",
+                                       "label" : "A-School"
+                                    }
+                                 }
+                              ],
+                              "n" : 1
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "school_bus",
+                                       "value" : "no"
+                                    }
+                                 ]
+                              ],
+                              "code" : "access.platform_school_bus",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152420",
+                                       "label" : "B-School"
+                                    }
+                                 }
+                              ],
+                              "n" : 1
+                           },
+                           {
+                              "args" : [
+                                 [
+                                    {
+                                       "key" : "access",
+                                       "value" : "no"
+                                    }
+                                 ]
+                              ],
+                              "code" : "access.platform_foot",
+                              "items" : [
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152409",
+                                       "label" : "A-School"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152420",
+                                       "label" : "B-School"
+                                    }
+                                 },
+                                 {
+                                    "kind" : "node",
+                                    "object" : {
+                                       "id" : "-152456",
+                                       "label" : "C-School"
+                                    }
+                                 }
+                              ],
+                              "n" : 3
+                           }
+                        ],
+                        "name" : "Bus SB02: A-School => C-School",
+                        "network" : "Test",
+                        "notes" : [
+                           {
+                              "args" : [
+                                 "Test"
+                              ],
+                              "code" : "note.network_equal"
+                           },
+                           {
+                              "args" : [
+                                 "operator",
+                                 "operator"
+                              ],
+                              "code" : "note.tag_value"
+                           }
+                        ],
+                        "operator" : "operator",
+                        "ref" : "SB02",
+                        "relation" : {
+                           "id" : "-152393",
+                           "link" : {
+                              "id" : "-152393",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        },
+                        "to" : "C-School",
+                        "type" : [
+                           "route"
+                        ]
+                     },
+                     "info" : "-152393",
+                     "ref" : "SB02",
+                     "type" : "line"
+                  }
+               ],
+               "type" : "table"
+            }
+         ]
+      }
+   },
+   "meta" : {},
+   "networkdetails" : {
+      "content" : []
+   },
+   "operatordetails" : {
+      "content" : [
+         {
+            "columns" : [
+               "operator",
+               "number",
+               "relations"
+            ],
+            "rows" : [
+               {
+                  "cells" : {
+                     "number" : 9,
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-152367",
+                              "label" : "001",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152368",
+                              "label" : "001",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152369",
+                              "label" : "001",
+                              "unroll" : true
+                           },
+                           {
+                              "id" : "-152370",
+                              "label" : "011",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152371",
+                              "label" : "011",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152372",
+                              "label" : "011",
+                              "unroll" : true
+                           },
+                           {
+                              "id" : "-152373",
+                              "label" : "021",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152374",
+                              "label" : "021",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152375",
+                              "label" : "021",
+                              "unroll" : true
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               },
+               {
+                  "cells" : {
+                     "number" : 2,
+                     "operator" : "operator",
+                     "relations" : {
+                        "links" : [
+                           {
+                              "id" : "-152391",
+                              "label" : "SB01",
+                              "relatify" : true,
+                              "show" : true
+                           },
+                           {
+                              "id" : "-152393",
+                              "label" : "SB02",
+                              "relatify" : true,
+                              "show" : true
+                           }
+                        ]
+                     }
+                  },
+                  "info" : "???",
+                  "ref" : "???",
+                  "type" : "line"
+               }
+            ],
+            "type" : "table"
+         }
+      ]
+   },
+   "routes" : [
+      {
+         "level" : 1,
+         "text" : "Test file for --check-access",
+         "type" : "header"
+      },
+      {
+         "level" : 2,
+         "text" : "Positive, normal situation",
+         "type" : "header"
+      },
+      {
+         "columns" : [
+            "name",
+            "type",
+            "relation",
+            "PTv",
+            "issues",
+            "notes"
+         ],
+         "rows" : [
+            {
+               "colour" : "",
+               "csv" : {
+                  "comment" : "",
+                  "from" : "A-Village",
+                  "gtfs" : "",
+                  "operator" : "Test",
+                  "to" : "C-Village"
+               },
+               "id" : "bus_001",
+               "network" : "Test",
+               "operator" : "",
+               "pt_type" : "bus",
+               "refs" : [
+                  "001"
+               ],
+               "text_colour" : "",
+               "type" : "subheader"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 001",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152369",
+                     "link" : {
+                        "id" : "-152369",
+                        "unroll" : true
+                     }
+                  },
+                  "type" : [
+                     "route_master"
+                  ]
+               },
+               "info" : "-152369",
+               "ref" : "001",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 001: A-Village => B-Village => C-Village",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152367",
+                     "link" : {
+                        "id" : "-152367",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152367",
+               "ref" : "001",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 001: C-Village => B-Village => A-Village",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152368",
+                     "link" : {
+                        "id" : "-152368",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152368",
+               "ref" : "001",
+               "type" : "line"
+            }
+         ],
+         "type" : "table"
+      },
+      {
+         "lines" : [],
+         "loose" : true,
+         "markup" : "wiki",
+         "type" : "paragraph"
+      },
+      {
+         "level" : 2,
+         "text" : "Positive, no errors on ways and nodes, access explicitely allowed: access=yes, psv=yes, bus=yes , ...",
+         "type" : "header"
+      },
+      {
+         "columns" : [
+            "name",
+            "type",
+            "relation",
+            "PTv",
+            "issues",
+            "notes"
+         ],
+         "rows" : [
+            {
+               "colour" : "",
+               "csv" : {
+                  "comment" : "",
+                  "from" : "A-City",
+                  "gtfs" : "",
+                  "operator" : "Test",
+                  "to" : "C-City"
+               },
+               "id" : "bus_021",
+               "network" : "Test",
+               "operator" : "",
+               "pt_type" : "bus",
+               "refs" : [
+                  "021"
+               ],
+               "text_colour" : "",
+               "type" : "subheader"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 021",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152375",
+                     "link" : {
+                        "id" : "-152375",
+                        "unroll" : true
+                     }
+                  },
+                  "type" : [
+                     "route_master"
+                  ]
+               },
+               "info" : "-152375",
+               "ref" : "021",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 021: A-City => B-City => C-City",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152373",
+                     "link" : {
+                        "id" : "-152373",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152373",
+               "ref" : "021",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 021: C-City => B-City => A-City",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152374",
+                     "link" : {
+                        "id" : "-152374",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152374",
+               "ref" : "021",
+               "type" : "line"
+            }
+         ],
+         "type" : "table"
+      },
+      {
+         "lines" : [],
+         "loose" : true,
+         "markup" : "wiki",
+         "type" : "paragraph"
+      },
+      {
+         "level" : 2,
+         "text" : "Negative, with errors on ways and nodes",
+         "type" : "header"
+      },
+      {
+         "columns" : [
+            "name",
+            "type",
+            "relation",
+            "PTv",
+            "issues",
+            "notes"
+         ],
+         "rows" : [
+            {
+               "colour" : "",
+               "csv" : {
+                  "comment" : "",
+                  "from" : "A-Town",
+                  "gtfs" : "",
+                  "operator" : "Test",
+                  "to" : "C-Town"
+               },
+               "id" : "bus_011",
+               "network" : "Test",
+               "operator" : "",
+               "pt_type" : "bus",
+               "refs" : [
+                  "011"
+               ],
+               "text_colour" : "",
+               "type" : "subheader"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "name" : "Bus 011",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152372",
+                     "link" : {
+                        "id" : "-152372",
+                        "unroll" : true
+                     }
+                  },
+                  "type" : [
+                     "route_master"
+                  ]
+               },
+               "info" : "-152372",
+               "ref" : "011",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "issues" : [
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "access",
+                                 "value" : "private"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152350",
+                                 "label" : "Way 15"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "bus",
+                                 "value" : "yes|yes|designated"
+                              }
+                           ],
+                           "bus",
+                           "",
+                           "yes|yes|designated"
+                        ],
+                        "code" : "access.way_suspicious_lanes",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152354",
+                                 "label" : "Way 20"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "highway",
+                                 "value" : "construction"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152453",
+                                 "label" : "Way 11a"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "highway",
+                                 "value" : "cycleway"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152355",
+                                 "label" : "Way 12"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "highway",
+                                 "value" : "footway"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152353",
+                                 "label" : "Way 4"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "highway",
+                                 "value" : "pedestrian"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152352",
+                                 "label" : "Way 13"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "motor_vehicle",
+                                 "value" : "no"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152348",
+                                 "label" : "Way 17"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "vehicle",
+                                 "value" : "private"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152349",
+                                 "label" : "Way 16"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           {
+                              "args" : [
+                                 "block"
+                              ],
+                              "code" : "access.barrier_implied_no",
+                              "kind" : "issue"
+                           },
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.barrier",
+                        "items" : [
+                           {
+                              "kind" : "node",
+                              "object" : {
+                                 "id" : "-152303"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           {
+                              "args" : [
+                                 "bollard"
+                              ],
+                              "code" : "access.barrier_implied_no",
+                              "kind" : "issue"
+                           },
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.barrier",
+                        "items" : [
+                           {
+                              "kind" : "node",
+                              "object" : {
+                                 "id" : "-152151"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     }
+                  ],
+                  "name" : "Bus 011: A-Town => B-Town => C-Town",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     },
+                     {
+                        "args" : [
+                           {
+                              "code" : "route.see",
+                              "kind" : "issue"
+                           },
+                           {
+                              "id" : "conditional_on_ways",
+                              "kind" : "anchor",
+                              "text" : {
+                                 "kind" : "foreign",
+                                 "value" : {
+                                    "kind" : "tr",
+                                    "msgid" : "Conditional access statements found on ways"
+                                 }
+                              }
+                           }
+                        ],
+                        "code" : "route.see_conditional"
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "construction",
+                                 "value" : "secondary"
+                              }
+                           ]
+                        ],
+                        "code" : "route.suspicious_construction",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152346",
+                                 "label" : "Way 19"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152370",
+                     "link" : {
+                        "id" : "-152370",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152370",
+               "ref" : "011",
+               "type" : "line"
+            },
+            {
+               "cells" : {
+                  "PTv" : "2",
+                  "issues" : [
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "access",
+                                 "value" : "private"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152350",
+                                 "label" : "Way 15"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "bus",
+                                 "value" : "no"
+                              }
+                           ],
+                           "bus"
+                        ],
+                        "code" : "access.way_psv_included",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152345",
+                                 "label" : "Way 11-12"
+                              }
+                           },
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152370",
+                                 "label" : "Way 12-15"
+                              }
+                           }
+                        ],
+                        "n" : 2
+                     },
+                     {
+                        "args" : [
+                           "bus"
+                        ],
+                        "code" : "access.way_school",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152351",
+                                 "label" : "Way 11b"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "bus",
+                                 "value" : "yes|yes|designated"
+                              }
+                           ],
+                           "bus",
+                           "",
+                           "yes|yes|designated"
+                        ],
+                        "code" : "access.way_suspicious_lanes",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152354",
+                                 "label" : "Way 20"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "highway",
+                                 "value" : "construction"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152453",
+                                 "label" : "Way 11a"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "motor_vehicle",
+                                 "value" : "no"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152348",
+                                 "label" : "Way 17"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "vehicle",
+                                 "value" : "private"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.way_no_psv",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152349",
+                                 "label" : "Way 16"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           {
+                              "args" : [
+                                 "bollard"
+                              ],
+                              "code" : "access.barrier_implied_no",
+                              "kind" : "issue"
+                           },
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.barrier",
+                        "items" : [
+                           {
+                              "kind" : "node",
+                              "object" : {
+                                 "id" : "-152151"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "barrier",
+                                 "value" : "entrance"
+                              },
+                              {
+                                 "key" : "motor_vehicle",
+                                 "value" : "no"
+                              }
+                           ],
+                           "bus",
+                           "bus"
+                        ],
+                        "code" : "access.barrier",
+                        "items" : [
+                           {
+                              "kind" : "node",
+                              "object" : {
+                                 "id" : "-152329"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     }
+                  ],
+                  "name" : "Bus 011: C-Town => B-Town => A-Town",
+                  "notes" : [
+                     {
+                        "args" : [
+                           "Test"
+                        ],
+                        "code" : "note.network_equal"
+                     },
+                     {
+                        "args" : [
+                           {
+                              "code" : "route.see",
+                              "kind" : "issue"
+                           },
+                           {
+                              "id" : "conditional_on_ways",
+                              "kind" : "anchor",
+                              "text" : {
+                                 "kind" : "foreign",
+                                 "value" : {
+                                    "kind" : "tr",
+                                    "msgid" : "Conditional access statements found on ways"
+                                 }
+                              }
+                           }
+                        ],
+                        "code" : "route.see_conditional"
+                     },
+                     {
+                        "args" : [
+                           [
+                              {
+                                 "key" : "construction",
+                                 "value" : "secondary"
+                              }
+                           ]
+                        ],
+                        "code" : "route.suspicious_construction",
+                        "items" : [
+                           {
+                              "kind" : "way",
+                              "object" : {
+                                 "id" : "-152346",
+                                 "label" : "Way 19"
+                              }
+                           }
+                        ],
+                        "n" : 1
+                     }
+                  ],
+                  "relation" : {
+                     "id" : "-152371",
+                     "link" : {
+                        "id" : "-152371",
+                        "relatify" : true,
+                        "show" : true
+                     }
+                  },
+                  "type" : [
+                     "route"
+                  ]
+               },
+               "info" : "-152371",
+               "ref" : "011",
+               "type" : "line"
+            }
+         ],
+         "type" : "table"
+      },
+      {
+         "lines" : [],
+         "loose" : true,
+         "markup" : "wiki",
+         "type" : "paragraph"
+      }
+   ],
+   "version" : 1
+}
